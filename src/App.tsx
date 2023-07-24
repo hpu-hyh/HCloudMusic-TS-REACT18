@@ -1,19 +1,17 @@
 import React, { Suspense } from 'react'
-import { useRoutes, Link } from 'react-router-dom'
+import { useRoutes } from 'react-router-dom'
 import routes from './router'
+import AppHeader from './components/app-header'
+import AppFooter from './components/app-footer'
 
 function App() {
   return (
     <div className="App">
-      <div className="nav">
-        <Link to="/discover">discover</Link>
-        <Link to="/mine">mine</Link>
-        <Link to="/focus">fff</Link>
-        <Link to="/download">do</Link>
-      </div>
+      <AppHeader />
       <Suspense fallback="loading">
         <div className="main">{useRoutes(routes)}</div>
       </Suspense>
+      <AppFooter />
     </div>
   )
 }
