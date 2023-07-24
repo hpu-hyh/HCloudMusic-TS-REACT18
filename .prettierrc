@@ -4,5 +4,14 @@
   "printWidth": 80,
   "singleQuote": true,
   "trailingComma": "none",
-  "semi": false
+  "semi": false,
+  "eslintIntegration": true,
+  "stylelintIntegration": true,
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "htmlWhitespaceSensitivity": "ignore",
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "files.insertFinalNewline": true,
+  "endOfLine": "auto",
+  "ignorePath": ".gnore"
 }
