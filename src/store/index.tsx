@@ -7,11 +7,13 @@ import {
   shallowEqual
 } from 'react-redux'
 
-import countReducer from './modules/counter'
+// import countReducer from './modules/counter'
+import recommendReducer from '../views/discover/c-views/recommend/store/recommends'
 
 const store = configureStore({
   reducer: {
-    counter: countReducer
+    // counter: countReducer,
+    recommend: recommendReducer
   }
 })
 
