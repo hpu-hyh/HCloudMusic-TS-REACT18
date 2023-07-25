@@ -2,8 +2,11 @@
 import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
 import { useAppDispatch } from '@/store'
-import { fetchBannerDaraAction } from './store/recommends'
+import { fetchRcommendDataAction } from './store/recommends'
 import TopBanner from './c-cpns/top-banner'
+import { RecommendWrapper } from './style'
+import HotRecommend from './c-cpns/hot-recommend'
+import NewAlbum from './c-cpns/new-album'
 
 interface IProps {
   children?: ReactNode
@@ -12,12 +15,19 @@ interface IProps {
 const Recommend: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(fetchBannerDaraAction())
+    dispatch(fetchRcommendDataAction())
   }, [])
   return (
-    <div>
+    <RecommendWrapper>
       <TopBanner />
-    </div>
+      <div className="content wrap-v2">
+        <div className="left">
+          <HotRecommend />
+          <NewAlbum />
+        </div>
+        <div className="right">222</div>
+      </div>
+    </RecommendWrapper>
   )
 }
 
