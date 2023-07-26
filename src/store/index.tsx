@@ -9,11 +9,13 @@ import {
 
 // import countReducer from './modules/counter'
 import recommendReducer from '../views/discover/c-views/recommend/store/recommends'
+import playerReducer from '../views/player/store/player'
 
 const store = configureStore({
   reducer: {
     // counter: countReducer,
-    recommend: recommendReducer
+    recommend: recommendReducer,
+    player: playerReducer
   }
 })
 

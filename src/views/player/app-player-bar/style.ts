@@ -21,7 +21,10 @@ export const AppPlayerBarWrapper = styled.div`
     height: 47px;
   }
 `
-export const BarControl = styled.div`
+interface IBarControl {
+  isPlaying: boolean
+}
+export const BarControl = styled.div<IBarControl>`
   display: flex;
   align-items: center;
 
@@ -41,6 +44,8 @@ export const BarControl = styled.div`
     height: 36px;
     margin: 0 8px;
     background-position: 0 -165px;
+    cursor: pointer;
+    background-position: 0 ${(props) => (props.isPlaying ? '-165px' : '-204px')};
   }
 
   .next {
@@ -116,7 +121,10 @@ export const BarPlayerInfo = styled.div`
     }
   }
 `
-export const BarOperator = styled.div`
+interface IBarOperator {
+  playMode: number
+}
+export const BarOperator = styled.div<IBarOperator>`
 display: flex;
   align-items: center;
   position: relative;
@@ -156,7 +164,16 @@ display: flex;
     }
 
     .loop {
-      background-position: -66px -248px;
+      background-position: ${(props) => {
+    switch (props.playMode) {
+      case 1:
+        return '-66px -248px'
+      case 2:
+        return '-66px -344px'
+      default:
+        return '-3px -344px'
+    }
+  }};
     }
 
     .playlist {

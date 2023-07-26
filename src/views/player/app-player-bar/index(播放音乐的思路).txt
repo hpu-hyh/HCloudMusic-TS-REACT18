@@ -1,0 +1,98 @@
+import React, { memo, useState, useRef, useEffect } from 'react'
+import type { FC, ReactNode } from 'react'
+import {
+  AppPlayerBarWrapper,
+  BarControl,
+  BarOperator,
+  BarPlayerInfo
+} from './style'
+import { Link } from 'react-router-dom'
+import { Slider } from 'antd'
+import { useAppSelector } from '@/store'
+import { getSongPlayUrl } from '@/utils/handle-player'
+
+interface IProps {
+  children?: ReactNode
+}
+
+const AppPlayerBar: FC<IProps> = () => {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [duration, setDuration] = useState(0)
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const { currentSong } = useAppSelector(state => ({
+    currentSong: state.player.currentSong
+  }))
+  useEffect(() => {
+    audioRef.current!.src = getSongPlayUrl(currentSong.id)
+    audioRef.current
+      ?.play()
+      .then(() => {
+        setIsPlaying(true)
+        console.log('播放成功')
+      })
+      .catch(() => {
+        setIsPlaying(false)
+        console.log('播放失败')
+      })
+
+    setDuration(currentSong.dt)
+  }, [currentSong])
+
+  function handlePlayBtnClick() {
+    // 1.控制播放器的播放/暂停
+    isPlaying
+      ? audioRef.current?.pause()
+      : audioRef.current?.play().catch(() => setIsPlaying(false))
+
+    // 2.改变isPlaying的状态
+    setIsPlaying(!isPlaying)
+  }
+
+  return (
+    <AppPlayerBarWrapper className="sprite_playbar">
+      <div className="content wrap-v2">
+        <BarControl isPlaying={isPlaying}>
+          <button className="btn sprite_playbar prev"></button>
+          <button
+            className="btn sprite_playbar play"
+            onClick={handlePlayBtnClick}
+          ></button>
+          <button className="btn sprite_playbar next"></button>
+        </BarControl>
+        <BarPlayerInfo>
+          <Link to="/player">
+            <img className="image" src={currentSong.al.picUrl} alt="" />
+          </Link>
+          <div className="info">
+            <div className="song">
+              <span className="song-name">{currentSong.name}</span>
+              <span className="singer-name">{currentSong.ar[0]?.name}</span>
+            </div>
+            <div className="progress">
+              <Slider />
+              <div className="time">
+                <span className="current">111</span>
+                <span className="divider">222</span>
+              </div>
+            </div>
+          </div>
+        </BarPlayerInfo>
+        <BarOperator playMode={playMode}>
+          <div className="left">
+            <button className="btn pip"></button>
+            <button className="btn sprite_playbar favor"></button>
+            <button className="btn sprite_playbar share"></button>
+          </div>
+          <div className="right  sprite_playbar">
+            <button className="btn  sprite_playbar volume"></button>
+            <button className="btn  sprite_playbar loop"></button>
+            <button className="btn  sprite_playbar playlist"></button>
+          </div>
+        </BarOperator>
+      </div>
+      <audio ref={audioRef}></audio>
+    </AppPlayerBarWrapper>
+  )
+}
+
+export default memo(AppPlayerBar)
