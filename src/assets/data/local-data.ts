@@ -68,18 +68,18 @@ export const discoverMenu = [
 
 // 热门主播
 export const hotRadios = [
-  {
-    picUrl: `${require('@/assets/img/quan.png')}`,
-    name: '圈圈',
-    position: '猪名奶茶品鉴官',
-    url: '/user/home?id=278438485'
-  },
-  {
-    picUrl: `${require('@/assets/img/yuexia.jpg')}`,
-    name: '月下',
-    position: '阴阳师骨灰级玩家',
-    url: '/user/home?id=278438485'
-  },
+  // {
+  //   picUrl: `${require('@/assets/img/quan.png')}`,
+  //   name: '圈圈',
+  //   position: '猪名奶茶品鉴官',
+  //   url: '/user/home?id=278438485'
+  // },
+  // {
+  //   picUrl: `${require('@/assets/img/yuexia.jpg')}`,
+  //   name: '月下',
+  //   position: '阴阳师骨灰级玩家',
+  //   url: '/user/home?id=278438485'
+  // },
   {
     picUrl:
       'http://p1.music.126.net/H3QxWdf0eUiwmhJvA4vrMQ==/1407374893913311.jpg',

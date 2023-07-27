@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 
 export const AppPlayerBarWrapper = styled.div`
+margin-top: 230px;
   position: fixed;
   z-index: 99;
   left: 0;
